@@ -3,6 +3,7 @@ const client = require('./plugins/contentful')
 export default {
   generate: { fallback: true },
   target: 'static',
+  ssr: false,
   head: {
     title: "Woven Capital Management Company, LLC.",
     meta: [
