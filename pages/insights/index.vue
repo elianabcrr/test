@@ -121,7 +121,7 @@ export default {
     <div class="w-100 container-insights">
       <template v-for="(arrayI, index) in insightArray" >
           <section :key="index"
-            class="content-insights fullpage"
+            class=" fullpage"
           >
             <div class="content-insights">
               <template v-for="(post, index) in arrayI">
@@ -177,6 +177,7 @@ section.content-insights.fullPage {
   height: 100vh;
   margin-top: 0px;
   display: flex;
+  width: 100%;
 }
 main.insights-page .fullpage {
   overflow: hidden;
