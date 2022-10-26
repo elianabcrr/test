@@ -292,7 +292,7 @@ form input {
 }
 @media (max-width: 767px) {
   .info-wrapper{
-    margin-bottom: 15px;
+    margin-bottom: 25px;
   }
   .content-contact,
   .col-info {

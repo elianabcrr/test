@@ -19,7 +19,7 @@ export default {
       valueProposition: "",
       stageVenture: "",
       investment: "",
-      pitchFemo: "",
+      pitchDemo: "",
     };
   },
   head() {
@@ -98,12 +98,12 @@ export default {
         valueProposition: this.valueProposition,
         stageVenture: this.stageVenture,
         investment: this.investment,
-        pitchFemo: this.pitchFemo,
+        pitchDemo: this.pitchDemo,
       };
      
       axios
         .post(
-          "https://getform.io/f/f347ebeb-1b79-4946-a64a-9b1f39ed67a1",
+          "https://getform.io/f/c133cc78-fab9-4ae2-9c88-ef142e6c22e7",
           data,
           {
             headers: {
@@ -131,7 +131,7 @@ export default {
       <div class="col-12 col-md-6 sect-image section-sticky top-0">
         <img
           class="h-100 w-100 img-pitch"
-          src="@/assets/image/pitch/frame-1.png"
+          src="@/assets/image/pitch/pitch.png"
           alt=""
         />
         <h1 class="title-pitch">Tell us about your company</h1>
@@ -251,7 +251,7 @@ export default {
                 id="pitch-deck-or-product-demo"
                 placeholder="http://"
                 required
-                v-model="pitchFemo"
+                v-model="pitchDemo"
               />
              
             </div>
@@ -379,8 +379,8 @@ h1.title-pitch {
   padding: 7% 7% 7% 4%;
 }
 .img-pitch {
-  object-fit: contain;
-  object-position: top;
+  object-fit: cover;
+  object-position: right;
 }
 .sect-image {
   padding: 0 5% 5% 5% 0;

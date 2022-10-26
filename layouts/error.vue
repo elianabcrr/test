@@ -1,24 +1,27 @@
 <template>
   <main>
-    <section class="m-0" v-if="error.statusCode === 404" id="error-404">
-      <div class="col-12 col-md-6 sect-image h-100">
-        <img class="img-error" src="@/assets/image/error.png" alt="" />
+ 
+      <section class="m-0" v-if="error.statusCode === 404" id="error-404">
+        <div class="col-12 col-md-6 sect-image h-100">
+          <img class="img-error" src="@/assets/image/error.png" alt="" />
+        </div>
+        <div class="col-12 col-md-6 content-error  h-100">
+          <p class="text-medium desc-error">Page not found</p>
+          <h1 class="title-error">Error 404</h1>
+          <p class="text-medium desc-error mb-4">
+            This page doesn't exist or was removed. We suggest you go back to the
+            homepage.
+          </p>
+          <buttom-primary
+            class="d-flex buttom-error align-items-start"
+            text_buttom="Back to Homepage"
+            link_buttom="/"
+          ></buttom-primary>
+        </div>
+      </section>
+      <div v-else style="display:none;">
+        <p>{{error}}</p>
       </div>
-      <div class="col-12 col-md-6 content-error  h-100">
-        <p class="text-medium desc-error">Page not found</p>
-        <h1 class="title-error">Error 404</h1>
-        <p class="text-medium desc-error mb-4">
-          This page doesn't exist or was removed. We suggest you go back to the
-          homepage.
-        </p>
-        <buttom-primary
-          class="d-flex buttom-error align-items-start"
-          text_buttom="Back to Homepage"
-          link_buttom="/"
-        ></buttom-primary>
-      </div>
-    </section>
-    <NuxtLink v-else to="/">Home page</NuxtLink>
   </main>
 </template>
 

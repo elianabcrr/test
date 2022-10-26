@@ -12,7 +12,7 @@ export default {
   },
   components: {
     titleSecundary,
-    cardTeam
+    cardTeam,
   },
   head() {
     if (
@@ -77,9 +77,7 @@ export default {
       metaContent: metaPage.items,
     };
   },
-  mounted() {
-   
-  },
+ 
 };
 </script>
 <template>
