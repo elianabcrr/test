@@ -72,9 +72,6 @@ export default {
       metaContent: metaPage.items,
     };
   },
-  mounted() {
-    document.getElementById("footer-container").style.display = "block";
-  },
   methods: {
     onSubmit() {
       let data = {

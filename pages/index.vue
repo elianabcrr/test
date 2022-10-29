@@ -293,19 +293,6 @@ export default {
                 </card-insights>
               </template>
             </div>
-            <div class="hide-team">
-              <div
-                class=" d-flex justify-content-center flex-column align-item-center text-center p-2 read-more-insight"
-              >
-                <div class="d-flex m-0 p-0 w-100 justify-content-center">
-                  <buttom-primary
-                    class="d-flex justify-content-center align-items-start"
-                    text_buttom="Meet the Team"
-                    link_buttom="/team"
-                  ></buttom-primary>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
      
@@ -313,9 +300,7 @@ export default {
   </main>
 </template>
 <style>
-.hide-team{
-  display: none;
-}
+
 .hero-image {
   z-index: 50;
 }
@@ -489,9 +474,6 @@ h1.title-home {
     grid-auto-rows: calc(50vh - 5px);
     height: 100vh;
   }
-  .read-more-insight {
-    height: 10vh;
-  }
   .container-insight {
     display: flex;
     flex-direction: column;
@@ -522,7 +504,7 @@ h1.title-home {
     margin-bottom: 15px;
   }
   .homePage .content-insights {
-    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
     grid-auto-rows: 400px;
     grid-gap: 20px;
   }

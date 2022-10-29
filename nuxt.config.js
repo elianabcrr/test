@@ -57,7 +57,7 @@ export default {
 
   modules: [
     '@nuxtjs/markdownit',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios', 
   ],
 
   markdownit: {

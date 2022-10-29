@@ -74,9 +74,6 @@ export default {
     ButtomPrimary,
   },
  
-  mounted() {
-    document.getElementById("footer-container").style.display = "block";
-  },
   async asyncData() {
     const metaPage = await client.getEntries({
       content_type: "metaPage",
