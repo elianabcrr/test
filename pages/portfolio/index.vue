@@ -414,6 +414,7 @@ export default {
   position: fixed;
   bottom: 8px;
   right: 43%;
+  z-index: 99;
 }
 .arrow-active a.item-arrow {
   background: unset !important;
