@@ -12,7 +12,7 @@ export default {
     class="col-12 col-md-4 col-lg-4 p-0 portfolio"
     :style="{ 'background-image': `url(${imagePort})` }"
   >
-    <a :href="`#${linkPort}`" class="w-100 h-100 m-0 p-0">
+    <a :href="`portfolio#${linkPort}`" class="w-100 h-100 m-0 p-0">
       <div
         class="overlay w-100 h-100 d-flex align-items-center justify-content-center m-0 p-0"
       >

@@ -29,6 +29,9 @@ export default {
       activeScrollDown: false,
       mousePoint: 0,
       metaContent: {},
+      currentlyActiveToc: "",
+      observer: null,
+      arrowActive: "",
     };
   },
   head() {
@@ -135,24 +138,27 @@ export default {
     },
   },
   mounted() {
-    console.log("enpieza");
     const menuLinks = document.querySelectorAll('.poits a[href^="#"]');
-    console.log(menuLinks + " menuLinks");
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const id = entry.target.getAttribute("id");
-          console.log(id + " id");
-          const menuLink = document.querySelector(`.poits a[href="#${id}"]`);
-          console.log(menuLink + " menuLink");
+
           if (entry.isIntersecting) {
-            document
-              .querySelector(".poits a.active")
-              .classList.remove("active");
-            menuLink.classList.add("active");
+            document;
+            this.currentlyActiveToc = id;
+
+            if (id == "nuro") {
+              this.arrowActive = "ridecell";
+            } else if (id == "ridecell") {
+              this.arrowActive = "whill";
+            } else if (id == "whill") {
+              this.arrowActive = "lp-investiments";
+            }
           }
+         
         });
-        console.log("observe");
       },
       { rootMargin: "-30% 0px -70% 0px" }
     );
@@ -160,10 +166,9 @@ export default {
     menuLinks.forEach((menuLink) => {
       const hash = menuLink.getAttribute("href");
       const target = document.querySelector(hash);
-      console.log("observe 2");
+
       if (target) {
         observer.observe(target);
-        console.log("observe 4");
       }
     });
   },
@@ -201,7 +206,7 @@ export default {
                 "
               >
                 <video
-                  class="w-100 object-cover vh-50 video-poster pb-5x"
+                  class="w-100 object-cover vh-50 video-poster"
                   autoplay="false"
                   muted="false"
                   controls
@@ -366,15 +371,61 @@ export default {
       </section-columns>
     </div>
     <div class="poits">
-      <a class="item-point" href="#nuro"></a>
-      <a class="item-point" href="#ridecell"></a>
-      <a class="item-point" href="#whill"></a>
-      <a class="item-point" href="#lp-investiments"></a>
+      <a
+        class="item-point"
+        href="#nuro"
+        :class="{ active: currentlyActiveToc == 'nuro' }"
+      ></a>
+      <a
+        class="item-point"
+        href="#ridecell"
+        :class="{ active: currentlyActiveToc == 'ridecell' }"
+      ></a>
+      <a
+        class="item-point"
+        href="#whill"
+        :class="{ active: currentlyActiveToc == 'whill' }"
+      ></a>
+      <a
+        class="item-point"
+        href="#lp-investiments"
+        :class="{ active: currentlyActiveToc == 'lp-investiments' }"
+      ></a>
+    </div>
+    <div class="arrow-active">
+      <a
+        v-if="currentlyActiveToc != 'lp-investiments'"
+        class="item-arrow"
+        :href="`#${arrowActive}`"
+        :class="{ active: currentlyActiveToc == 'ridecell' }"
+      >
+        <img
+          class="img-arrow"
+          src="@/assets/image/Scroll-Down-Arrow.png"
+          alt=""
+        />
+      </a>
     </div>
   </main>
 </template>
 
 <style scoped>
+.arrow-active {
+  position: fixed;
+  bottom: 8px;
+  right: 43%;
+}
+.arrow-active a.item-arrow {
+  background: unset !important;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+.arrow-active img.img-arrow {
+  height: 45px;
+  width: 45px;
+  object-fit: contain;
+}
 .poits {
   position: fixed;
   top: 0;
@@ -396,9 +447,13 @@ a.item-point {
   border-radius: 100%;
 }
 .poits a.item-point.active,
-.poits a.nuxt-link-exact-active,
-.poits a:hover {
+.poits a.nuxt-link-exact-active {
   padding: 10px;
+}
+@media(max-width:1024px){
+  div.poits, div.arrow-active {
+    display: none;
+  }
 }
 .remove-video {
   display: none;
