@@ -7,6 +7,9 @@
 a, a h1, a h2, a h3, a h4, a h5, a h6, a span, a p, a div, a img, a video{
     cursor: pointer;
 }
+html {
+    scroll-behavior: smooth;
+  }
 :root{
     --bg--primary: #21CB25;
     --color--secondary: #313131;

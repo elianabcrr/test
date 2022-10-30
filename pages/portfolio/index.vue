@@ -127,7 +127,6 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false;
     },
-
     endedVideo(event) {
       let video = event.srcElement;
 
@@ -135,19 +134,45 @@ export default {
       video.nextSibling.nextElementSibling.classList.remove("remove-video");
     },
   },
+  mounted() {
+    console.log("enpieza");
+    const menuLinks = document.querySelectorAll('.poits a[href^="#"]');
+    console.log(menuLinks + " menuLinks");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute("id");
+          console.log(id + " id");
+          const menuLink = document.querySelector(`.poits a[href="#${id}"]`);
+          console.log(menuLink + " menuLink");
+          if (entry.isIntersecting) {
+            document
+              .querySelector(".poits a.active")
+              .classList.remove("active");
+            menuLink.classList.add("active");
+          }
+        });
+        console.log("observe");
+      },
+      { rootMargin: "-30% 0px -70% 0px" }
+    );
+
+    menuLinks.forEach((menuLink) => {
+      const hash = menuLink.getAttribute("href");
+      const target = document.querySelector(hash);
+      console.log("observe 2");
+      if (target) {
+        observer.observe(target);
+        console.log("observe 4");
+      }
+    });
+  },
 };
 </script>
 
 <template>
   <main class="portfolio">
     <div class="container-portfolio">
-      <!-- <portfolio-header
-        :offsets="offsets"
-        :activeSection="activeSection"
-        v-on:sectActive="handleSection"
-      >
-      </portfolio-header> -->
-
       <template v-for="(portfolio, index) in portfoliosCont">
         <section-columns
           :key="index"
@@ -340,11 +365,41 @@ export default {
         </template>
       </section-columns>
     </div>
+    <div class="poits">
+      <a class="item-point" href="#nuro"></a>
+      <a class="item-point" href="#ridecell"></a>
+      <a class="item-point" href="#whill"></a>
+      <a class="item-point" href="#lp-investiments"></a>
+    </div>
   </main>
 </template>
 
 <style scoped>
-
+.poits {
+  position: fixed;
+  top: 0;
+  right: 20px;
+  bottom: 0;
+  margin: auto 0;
+  height: auto;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 99999;
+}
+a.item-point {
+  background: var(--color--secondary);
+  padding: 6px;
+  margin: 5px 0;
+  border-radius: 100%;
+}
+.poits a.item-point.active,
+.poits a.nuxt-link-exact-active,
+.poits a:hover {
+  padding: 10px;
+}
 .remove-video {
   display: none;
 }
@@ -448,10 +503,10 @@ div.text-center p {
 }
 
 @media (max-width: 767px) {
-  .portfolio .col-sticky{
+  .portfolio .col-sticky {
     order: 2;
   }
-  .portfolio .col-content{
+  .portfolio .col-content {
     order: 1;
   }
   .container-portfolio {
