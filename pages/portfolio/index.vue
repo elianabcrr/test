@@ -136,11 +136,14 @@ export default {
       video.classList.add("remove-video");
       video.nextSibling.nextElementSibling.classList.remove("remove-video");
     },
+    tableOfContentsHeadingClick(link) {
+      this.currentlyActiveToc = link.id;
+    },
   },
   mounted() {
     const menuLinks = document.querySelectorAll('.poits a[href^="#"]');
 
-    const observer = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const id = entry.target.getAttribute("id");
@@ -168,10 +171,15 @@ export default {
       const target = document.querySelector(hash);
 
       if (target) {
-        observer.observe(target);
+        this.observer.observe(target);
       }
     });
   },
+  beforeDestroy() {
+    this.observer.disconnect();
+  }
+   
+  
 };
 </script>
 
@@ -375,21 +383,25 @@ export default {
         class="item-point"
         href="#nuro"
         :class="{ active: currentlyActiveToc == 'nuro' }"
+         @click="tableOfContentsHeadingClick('nuro')"
       ></a>
       <a
         class="item-point"
         href="#ridecell"
         :class="{ active: currentlyActiveToc == 'ridecell' }"
+        @click="tableOfContentsHeadingClick('ridecell')"
       ></a>
       <a
         class="item-point"
         href="#whill"
         :class="{ active: currentlyActiveToc == 'whill' }"
+        @click="tableOfContentsHeadingClick('whill')"
       ></a>
       <a
         class="item-point"
         href="#lp-investiments"
         :class="{ active: currentlyActiveToc == 'lp-investiments' }"
+        @click="tableOfContentsHeadingClick('lp-investiments')"
       ></a>
     </div>
     <div class="arrow-active">
@@ -410,6 +422,9 @@ export default {
 </template>
 
 <style scoped>
+html {
+    scroll-behavior: smooth;
+  }
 .arrow-active {
   position: fixed;
   bottom: 8px;
