@@ -136,11 +136,18 @@ export default {
       video.classList.add("remove-video");
       video.nextSibling.nextElementSibling.classList.remove("remove-video");
     },
-    tableOfContentsHeadingClick(link) {
-      this.currentlyActiveToc = link.id;
+    scrollTo: function (hashtag) {
+      setTimeout(() => {
+        location.href = hashtag;
+      }, 500);
     },
   },
+
   mounted() {
+    if (this.$route.hash) {
+      setTimeout(() => this.scrollTo(this.$route.hash), 500);
+    }
+
     const menuLinks = document.querySelectorAll('.poits a[href^="#"]');
 
     this.observer = new IntersectionObserver(
@@ -160,7 +167,6 @@ export default {
               this.arrowActive = "lp-investiments";
             }
           }
-         
         });
       },
       { rootMargin: "-30% 0px -70% 0px" }
@@ -177,9 +183,7 @@ export default {
   },
   beforeDestroy() {
     this.observer.disconnect();
-  }
-   
-  
+  },
 };
 </script>
 
@@ -383,25 +387,21 @@ export default {
         class="item-point"
         href="#nuro"
         :class="{ active: currentlyActiveToc == 'nuro' }"
-         @click="tableOfContentsHeadingClick('nuro')"
       ></a>
       <a
         class="item-point"
         href="#ridecell"
         :class="{ active: currentlyActiveToc == 'ridecell' }"
-        @click="tableOfContentsHeadingClick('ridecell')"
       ></a>
       <a
         class="item-point"
         href="#whill"
         :class="{ active: currentlyActiveToc == 'whill' }"
-        @click="tableOfContentsHeadingClick('whill')"
       ></a>
       <a
         class="item-point"
         href="#lp-investiments"
         :class="{ active: currentlyActiveToc == 'lp-investiments' }"
-        @click="tableOfContentsHeadingClick('lp-investiments')"
       ></a>
     </div>
     <div class="arrow-active">
@@ -422,9 +422,6 @@ export default {
 </template>
 
 <style scoped>
-html {
-    scroll-behavior: smooth;
-  }
 .arrow-active {
   position: fixed;
   bottom: 8px;
@@ -466,8 +463,9 @@ a.item-point {
 .poits a.nuxt-link-exact-active {
   padding: 10px;
 }
-@media(max-width:1024px){
-  div.poits, div.arrow-active {
+@media (max-width: 1024px) {
+  div.poits,
+  div.arrow-active {
     display: none;
   }
 }
