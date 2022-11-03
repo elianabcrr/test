@@ -455,13 +455,13 @@ export default {
 }
 a.item-point {
   background: var(--color--secondary);
-  padding: 6px;
+  padding: 3px;
   margin: 5px 0;
   border-radius: 100%;
 }
 .poits a.item-point.active,
 .poits a.nuxt-link-exact-active {
-  padding: 10px;
+  padding: 5px;
 }
 @media (max-width: 1024px) {
   div.poits,
