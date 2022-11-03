@@ -77,14 +77,86 @@ export default {
     },
   },
   
- 
+  async asyncData() {
+    const insig = await client.getEntries({
+      content_type: "insightsNwc",
+      order: "-fields.publishDate",
+    });
+
+    const result = insig.items.length % 3;
+    var resulArr = [];
+
+    const ctPost = 3;
+    var arrayInsig = [];
+
+    if (result > 0) {
+      resulArr = insig.items.splice(insig.items.length - result, result);
+    }
+
+    const numbSections = insig.items.length / 3;
+
+    for (let i = numbSections - 1; i >= 0; i--) {
+      arrayInsig[i] = insig.items.splice(insig.items.length - ctPost, ctPost);
+    }
+
+    const metaPage = await client.getEntries({
+      content_type: "metaPage",
+      "fields.slugPage": "insights",
+    });
+
+    return {
+      insightsCont: insig.items,
+      insightsResult: resulArr,
+      cantSections: numbSections,
+      insightArray: arrayInsig,
+      metaContent: metaPage.items,
+    };
+  },
+
 };
 </script>
 
 <template>
   <main class="content-main insights-page">
     <div class="w-100 container-insights">
-    
+      <template v-for="(arrayI, index) in insightArray" >
+          <section :key="index"
+            class=" fullpage"
+          >
+            <div class="content-insights">
+              <template v-for="(post, index) in arrayI">
+                <card-insights
+                  :key="index"
+                  :titleInsights="post.fields.title"
+                  :slugInsights="post.fields.urlSlug"
+                  :externalslugInsights="post.fields.externalLink"
+                  :imageInsights="post.fields.coverImage.fields.file.url"
+                  :dateInsights="dateForm(post.fields.publishDate)"
+                >
+                </card-insights>
+              </template>
+            </div>
+          </section>
+      </template>
+      
+        <section
+          class="result-insights fullpage"
+          v-if="this.insightsResult.length > 0"
+        >
+          <div class="result-insights">
+            <template v-for="(result, index) in this.insightsResult">
+              <card-insights
+                :key="index"
+                :titleInsights="result.fields.title"
+                :slugInsights="result.fields.urlSlug"
+                :externalslugInsights="result.fields.externalLink"
+                :imageInsights="result.fields.coverImage.fields.file.url"
+                :dateInsights="dateForm(result.fields.publishDate)"
+              >
+              </card-insights>
+            </template>
+          </div>
+        </section>
    
     </div>
   </main>
