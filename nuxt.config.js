@@ -34,7 +34,7 @@ export default {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200&display=swap'}
     ], 
     scripts: [
-      
+      {id:"Cookiebot", src:"https://consent.cookiebot.com/uc.js", 'data-cbid':"95bd0f51-1f5e-484d-89ca-0ef9c12c9640", 'data-blockingmode':"auto", type:"text/javascript"}
     ]
   },
 
