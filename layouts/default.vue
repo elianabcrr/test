@@ -6,7 +6,6 @@
     <Nuxt class="content-main" />
     <!-- footer -->
     <TheFooter class="content-main" />
-   <script id="CookieDeclaration" src="https://consent.cookiebot.com/95bd0f51-1f5e-484d-89ca-0ef9c12c9640/cd.js" type="text/javascript" async></script>
   </div>
 </template>
 <style>
