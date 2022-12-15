@@ -13,7 +13,9 @@ export default {
 };
 </script>
 <template>
+
   <footer class="bg-footer w-100 content-main" id="footer-container">
+    <script id="CookieDeclaration" src="https://consent.cookiebot.com/95bd0f51-1f5e-484d-89ca-0ef9c12c9640/cd.js" type="text/javascript" async></script>
     <div class="row align-items-start m-0 content-footer w-100">
       <div class="col-md-7 m-0 p-0 footer-items">
         <ul
