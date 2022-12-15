@@ -45,9 +45,6 @@ export default {
   plugins: [
     '@/plugins/bootstrap-vue',
     '@/plugins/contentful.js',
-    {
-      src:"plugins/vue-cookies-consent.js", mode:'client'
-    }
   ],
 
   components: true,
